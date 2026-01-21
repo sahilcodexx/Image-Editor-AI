@@ -1,8 +1,20 @@
+import HeroSection from "@/components/layouts/hero";
+
 const page = () => {
   return (
-    <div>
-      This is home page
-
+    <div className="">
+      <HeroSection />
+      <section className="py-20 text-center ">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-5xl font-bold mb-6">
+            A Better <span>Way to Edit Images Online</span>
+          </h2>
+          <p className="text-xl text-neutral-500 dark:text-neutral-400 mb-8">
+            Edit and improve images quickly with easy-to-use tools that deliver
+            clean, reliable results online.
+          </p>
+        </div>
+      </section>
     </div>
   );
 };

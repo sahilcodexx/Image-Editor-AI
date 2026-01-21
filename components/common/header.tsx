@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { useStoreUserEffect } from "@/hooks/use-storeuser-effect";
 import { BarLoader } from "react-spinners";
 import { Authenticated, Unauthenticated } from "convex/react";
+import { LayoutDashboard } from "lucide-react";
 
 const Header = () => {
   const { theme } = useTheme();
@@ -70,6 +71,12 @@ const Header = () => {
               <Button>Get Started</Button>
             </SignUpButton>
           </Unauthenticated>
+          <Link href={"/dashboard"}>
+            <Button className="hidden sm:flex">
+              <LayoutDashboard className="w-4 h-4" />
+              <span className="sm:flex hidden">Dashboard</span>
+            </Button>
+          </Link>
           <Authenticated>
             <UserButton />
           </Authenticated>

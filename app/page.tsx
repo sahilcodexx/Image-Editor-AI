@@ -1,8 +1,9 @@
 import HeroSection from "@/components/layouts/hero";
+import { MarqueeDemo } from "@/components/ui/marquee-demo";
 
 const page = () => {
   return (
-    <div className="">
+    <div className="md:py-40 py-20">
       <HeroSection />
       <section className="py-20 text-center ">
         <div className="max-w-4xl mx-auto px-6">
@@ -15,6 +16,7 @@ const page = () => {
           </p>
         </div>
       </section>
+      <MarqueeDemo />
     </div>
   );
 };

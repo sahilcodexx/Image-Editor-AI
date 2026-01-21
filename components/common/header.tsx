@@ -21,7 +21,7 @@ const Header = () => {
   }
   return (
     <header className="fixed top-0 z-50 w-full ">
-      <div className="dark:bg-neutral-950/50 backdrop-blur-2xl w-full py-5 px-15 border-b dark:border-neutral-600/50 bg-neutral-200/20 border-neutral-300 flex justify-between items-center">
+      <div className="dark:bg-neutral-950/50 backdrop-blur-2xl w-full py-5 md:px-15 px-4 border-b dark:border-neutral-600/50 bg-neutral-200/20 border-neutral-300 flex justify-between items-center">
         <Link href={"/"}>
           <Image
             src={theme === "light" ? "/blacklogo.webp" : "/whitelogo.webp"}
@@ -87,6 +87,7 @@ const Header = () => {
         {isLoading && (
           <div className="fixed bottom-0 left-0 w-full z-40 flex justify-center">
             <BarLoader
+              height={"2"}
               width={"100%"}
               color={theme === "light" ? "#0a0a0a" : "#fafafa"}
             />

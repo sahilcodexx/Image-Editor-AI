@@ -1,4 +1,4 @@
-import { Calendar } from "lucide-react";
+import { Calendar, ImagePlay } from "lucide-react";
 import Container from "../common/container";
 
 export default function PricingCards() {
@@ -61,7 +61,7 @@ export default function PricingCards() {
 
   return (
     <Container>
-      <div className="w-full">
+      <div className="max-w-3xl m-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-225 mx-auto">
           <div
             className={[
@@ -96,9 +96,9 @@ export default function PricingCards() {
 
               <div className="flex items-baseline mb-8">
                 <span className="text-5xl font-bold tracking-tighter text-neutral-900">
-                  $1299
+                  $0
                 </span>
-                <span className="text-neutral-400 text-lg ml-1">/fixed</span>
+                <span className="text-neutral-400 text-lg ml-1">/free</span>
               </div>
 
               <button
@@ -111,8 +111,8 @@ export default function PricingCards() {
                   "ring-1 ring-inset ring-neutral-900/10",
                 ].join(" ")}
               >
-                Book a call
-                <Calendar className="w-5 h-5 text-neutral-300" />
+               Get Started Free
+                <ImagePlay className="w-5 h-5 text-neutral-300" />
               </button>
             </div>
 
@@ -127,7 +127,7 @@ export default function PricingCards() {
               <div className="grid grid-cols-2 gap-y-4 gap-x-4">
                 {starterFeatures.map((feature) => (
                   <div key={feature} className="flex items-center gap-3">
-                    <LightCheckIcon className="w-4 h-4 flex-shrink-0" />
+                    <LightCheckIcon className="w-4 h-4 shrink-0" />
                     <span className="text-neutral-800 text-sm font-medium">
                       {feature}
                     </span>
@@ -162,7 +162,7 @@ export default function PricingCards() {
                     Pro
                   </h2>
                   <p className="text-neutral-400  text-base leading-relaxed mt-1">
-                    Go further with more concepts <br /> and polish.
+                    Go further with more concepts  and polish.
                   </p>
                 </div>
                 <span className="inline-flex text-nowrap items-center rounded-full border border-neutral-700 bg-neutral-900/50 px-3 py-1 text-xs font-medium text-neutral-300 backdrop-blur">

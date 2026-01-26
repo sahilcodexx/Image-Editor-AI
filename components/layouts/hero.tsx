@@ -21,7 +21,7 @@ const HeroSection = () => {
       </div>
 
       <div className="mx-auto mt-6 max-w-4xl px-6">
-        <h1 className="mt-4 text-center text-3xl font-medium tracking-tight text-black md:text-4xl lg:text-6xl dark:text-white">
+        <h1 className="mt-4 text-center text-3xl font-medium tracking-tight text-black md:text-5xl lg:text-7xl dark:text-white">
           Simple Tools for <br />
           Better
           <span className="font-semibold text-red-600/80 dark:text-orange-600">

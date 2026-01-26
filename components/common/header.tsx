@@ -12,6 +12,7 @@ import { Authenticated, Unauthenticated } from "convex/react";
 import { LayoutDashboard } from "lucide-react";
 
 const Header = () => {
+
   const { theme } = useTheme();
   const path = usePathname();
   const { isLoading } = useStoreUserEffect();
@@ -20,24 +21,24 @@ const Header = () => {
     return null;
   }
   return (
-    <header className="fixed top-0 z-50 w-full ">
-      <div className="dark:bg-neutral-950/50 backdrop-blur-2xl w-full py-5 md:px-15 px-4 border-b dark:border-neutral-600/50 bg-neutral-200/20 border-neutral-300 flex justify-between items-center">
+    <header className="fixed top-0 z-50 w-full border-b border-neutral-300 bg-neutral-200/20 backdrop-blur-2xl dark:border-neutral-600/50 dark:bg-neutral-950/50">
+      <div className="m-auto flex w-full max-w-7xl items-center justify-between px-4 py-5 md:px-15">
         <Link href={"/"}>
           <Image
-            src={theme === "light" ? "/blacklogo.webp" : "/whitelogo.webp"}
+            src={"/whitelogo.webp"}
             alt="logo"
-            width={120}
+            width={50}
             height={40}
             priority
-            className="min-w-24 object-cover"
+            className="min-w-24 object-cover invert dark:invert-0"
           ></Image>
         </Link>
-        <div className="md:flex hidden ">
+        <div className="hidden md:flex">
           <ul className="flex gap-4 text-xl">
             <li>
               <Link
                 href={"/feature"}
-                className="dark:hover:text-neutral-400 hover:text-neutral-500 transition-all duration-200 cursor-pointer "
+                className="cursor-pointer transition-all duration-200 hover:text-neutral-500 dark:hover:text-neutral-400"
               >
                 Feature
               </Link>
@@ -45,7 +46,7 @@ const Header = () => {
             <li>
               <Link
                 href={"/pricing"}
-                className="dark:hover:text-neutral-400 hover:text-neutral-500 transition-all duration-200 cursor-pointer "
+                className="cursor-pointer transition-all duration-200 hover:text-neutral-500 dark:hover:text-neutral-400"
               >
                 Pricing
               </Link>
@@ -53,7 +54,7 @@ const Header = () => {
             <li>
               <Link
                 href={"/contact"}
-                className="dark:hover:text-neutral-400 hover:text-neutral-500 transition-all duration-200 cursor-pointer "
+                className="cursor-pointer transition-all duration-200 hover:text-neutral-500 dark:hover:text-neutral-400"
               >
                 Contact
               </Link>
@@ -71,12 +72,14 @@ const Header = () => {
               <Button>Get Started</Button>
             </SignUpButton>
           </Unauthenticated>
-          <Link href={"/dashboard"}>
-            <Button className="hidden sm:flex">
-              <LayoutDashboard className="w-4 h-4" />
-              <span className="sm:flex hidden">Dashboard</span>
-            </Button>
-          </Link>
+         
+            <Link href={"/dashboard"}>
+              <Button className="hidden sm:flex">
+                <LayoutDashboard className="h-4 w-4" />
+                <span className="hidden sm:flex">Dashboard</span>
+              </Button>
+            </Link>
+    
           <Authenticated>
             <UserButton />
           </Authenticated>
@@ -85,9 +88,9 @@ const Header = () => {
           </span>
         </div>
         {isLoading && (
-          <div className="fixed bottom-0 left-0 w-full z-40 flex justify-center">
+          <div className="fixed bottom-0 left-0 z-40 flex w-full justify-center">
             <BarLoader
-              height={"2"}
+              height={"2px"}
               width={"100%"}
               color={theme === "light" ? "#0a0a0a" : "#fafafa"}
             />

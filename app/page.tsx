@@ -35,6 +35,7 @@ const page = () => {
             </p>
           </div>
         </section>
+        
         <PricingCards />
         <section className="py-20 pb-10 text-center ">
           <div className="max-w-4xl mx-auto px-6">

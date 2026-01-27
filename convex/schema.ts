@@ -28,7 +28,7 @@ export default defineSchema({
 
     // Canvas related
     canvasState: v.any(),
-    widht: v.number(),
+    width: v.number(),
     height: v.number(),
 
     // Image related
@@ -55,7 +55,7 @@ export default defineSchema({
 
   folder: defineTable({
     name: v.string(),
-    userId: v.id("userId"),
+    userId: v.id("users"),
     createdAt: v.number(),
   }).index("by_user", ["userId"]),
 });

@@ -3,7 +3,7 @@ import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 
 const Dashboard = () => {
-  const data = useQuery(api.users.getCurrentUser);
+  const data = useQuery(api.project.getUserProjects);
   console.log(data);
 
   return (

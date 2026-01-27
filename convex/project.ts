@@ -1,6 +1,22 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { api } from "./_generated/api";
+import { MutationCtx, QueryCtx } from "./_generated/server";
+import { Id } from "./_generated/dataModel";
+
+type Project = {
+  _id: Id<"project">;
+  title: string;
+  userId: Id<"users">; 
+  canvasState: unknown; 
+  width: number;
+  height: number;
+  originalImageUrl?: string;
+  currentImageUrl?: string;
+  thumbnailUrl?: string;
+  createdAt: number;
+  updatedAt: number;
+};
 
 export const create = mutation({
   args: {
@@ -8,11 +24,22 @@ export const create = mutation({
     originalImageUrl: v.optional(v.string()),
     currentImageUrl: v.optional(v.string()),
     thumbnailUrl: v.optional(v.string()),
-    widht: v.number(),
+    width: v.number(),
     height: v.number(),
-    canvasState: v.optional(v.any()),
+    canvasState: v.optional(v.any()), 
   },
-  handler: async (ctx, args) => {
+  handler: async (
+    ctx: MutationCtx,
+    args: {
+      title: string;
+      originalImageUrl?: string;
+      currentImageUrl?: string;
+      thumbnailUrl?: string;
+      width: number;
+      height: number;
+      canvasState?: unknown; 
+    },
+  ): Promise<string> => {
     const user = await ctx.runQuery(api.users.getCurrentUser);
     if (user.plan === "free") {
       const projectCount = await ctx.db
@@ -24,11 +51,12 @@ export const create = mutation({
         throw new Error("Free plan limited to 3 project");
       }
     }
+
     const projectID = await ctx.db.insert("project", {
       title: args.title,
       userId: user._id,
-      canvasState: {},
-      widht: args.widht,
+      canvasState: args.canvasState as unknown || {}, 
+      width: args.width,
       height: args.height,
       originalImageUrl: args.originalImageUrl,
       currentImageUrl: args.currentImageUrl,
@@ -47,7 +75,7 @@ export const create = mutation({
 });
 
 export const getUserProjects = query({
-  handler: async (ctx) => {
+  handler: async (ctx: QueryCtx): Promise<Project[]> => {
     const user = await ctx.runQuery(api.users.getCurrentUser);
     const projects = await ctx.db
       .query("project")
@@ -60,10 +88,13 @@ export const getUserProjects = query({
 
 export const deleteProjects = mutation({
   args: { projectID: v.id("project") },
-  handler: async (ctx, args) => {
+  handler: async (
+    ctx: MutationCtx,
+    args: { projectID: Id<"project"> },
+  ): Promise<{ success: boolean }> => {
     const user = await ctx.runQuery(api.users.getCurrentUser);
 
-    const project = await ctx.db.get(args.projectID);
+    const project = (await ctx.db.get(args.projectID)) as Project | null;
 
     if (!project) {
       throw new Error("Project not found");

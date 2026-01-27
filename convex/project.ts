@@ -1,4 +1,4 @@
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { api } from "./_generated/api";
 
@@ -43,5 +43,42 @@ export const create = mutation({
     });
 
     return projectID;
+  },
+});
+
+export const getUserProjects = query({
+  handler: async (ctx) => {
+    const user = await ctx.runQuery(api.users.getCurrentUser);
+    const projects = await ctx.db
+      .query("project")
+      .withIndex("by_user_updated", (q) => q.eq("userId", user._id))
+      .order("desc")
+      .collect();
+    return projects;
+  },
+});
+
+export const deleteProjects = mutation({
+  args: { projectID: v.id("project") },
+  handler: async (ctx, args) => {
+    const user = await ctx.runQuery(api.users.getCurrentUser);
+
+    const project = await ctx.db.get(args.projectID);
+
+    if (!project) {
+      throw new Error("Project not found");
+    }
+
+    if (!user || project.userId !== user._id) {
+      throw new Error("access denied");
+    }
+
+    await ctx.db.delete(args.projectID);
+
+    await ctx.db.patch(user._id, {
+      projectUsed: Math.max(0, user.projectUsed - 1),
+      lastActive: Date.now(),
+    });
+    return { success: true };
   },
 });

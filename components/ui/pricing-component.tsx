@@ -180,7 +180,7 @@ export default function PricingCards() {
 
               <div className="mb-8 flex items-baseline">
                 <span className="text-5xl font-bold tracking-tighter text-white">
-                  $2299
+                  $15
                 </span>
                 <span className="ml-1 text-lg text-neutral-500">/fixed</span>
               </div>

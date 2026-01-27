@@ -1,14 +1,14 @@
 "use client";
 import { api } from "@/convex/_generated/api";
-import { useQuery } from "convex/react";
+import { useConvexQuery } from "@/hooks/use-convex-query";
 
 const Dashboard = () => {
-  const data = useQuery(api.project.getUserProjects);
+  const {data,error,isLoading} = useConvexQuery(api.project.getUserProjects);
   console.log(data);
 
   return (
     <div className="h-screen w-full flex items-center justify-center">
-      <h1>Dashboard</h1>
+     
     </div>
   );
 };

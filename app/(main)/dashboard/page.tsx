@@ -10,15 +10,17 @@ import ProjectOpenModel from "./_components/project-open-model";
 
 const Dashboard = () => {
   const [showNewProject, setShowNewProject] = useState<boolean>(false);
-  const {
-    data: projects,
-    isLoading,
-  } = useConvexQuery(api.project.getUserProjects) as {
+
+  const { data: projects, isLoading } = useConvexQuery(
+    api.project.getUserProjects,
+  ) as {
     data: unknown[] | undefined;
     error: Error;
     isLoading: boolean;
   };
   console.log(projects);
+
+  
 
   return (
     <Container className="flex h-screen w-full flex-col items-center justify-start gap-5 pt-25">

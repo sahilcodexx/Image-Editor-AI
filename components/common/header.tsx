@@ -33,7 +33,7 @@ const Header = () => {
           ></Image>
         </Link>
         <div className="hidden md:flex">
-          <ul className="flex gap-4 text-xl">
+          <ul className="flex gap-4 text-sm">
             <li>
               <Link
                 href={"/feature"}

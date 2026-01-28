@@ -6,7 +6,7 @@ export const useConvexQuery = (query: unknown, ...args: unknown[]) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result = useQuery(query as any, ...(args as any)) as any;
 
-  const [data, setData] = useState(undefined);
+  const [data, setData] = useState<unknown>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -35,7 +35,7 @@ export const useConvexMutation = (mutation: unknown) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mutationFn = useMutation(mutation as any);
 
-  const [data, setData] = useState(undefined);
+  const [data, setData] = useState<unknown>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 

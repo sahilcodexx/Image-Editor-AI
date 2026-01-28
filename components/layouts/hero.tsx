@@ -8,8 +8,9 @@ import { ArrowRight } from "lucide-react";
 const HeroSection = () => {
   return (
     <Container className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-15 pb-20 text-center">
+      <div className="bg-primary absolute bottom-94 h-50 w-50 scale-135 opacity-40 blur-3xl"></div>
       <div className="flex w-full items-center justify-center">
-        <div className="flex items-center gap-2 rounded-2xl border-2 px-4 py-1 ">
+        <div className="flex items-center gap-2 rounded-2xl border-2 px-4 py-1">
           <AnimatedShinyText>
             For fast moving engineering teams
           </AnimatedShinyText>

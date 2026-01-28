@@ -4,7 +4,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 type ProjectOpenModelProps = {
   isOpen: boolean;
@@ -12,7 +11,7 @@ type ProjectOpenModelProps = {
 };
 
 const ProjectOpenModel = ({ isOpen, onClose }: ProjectOpenModelProps) => {
-  const handelChange = (event: unknown) => {
+  const handelChange = () => {
     onClose();
   };
   return (

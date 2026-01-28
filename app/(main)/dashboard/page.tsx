@@ -12,7 +12,6 @@ const Dashboard = () => {
   const [showNewProject, setShowNewProject] = useState<boolean>(false);
   const {
     data: projects,
-    error,
     isLoading,
   } = useConvexQuery(api.project.getUserProjects) as {
     data: unknown[] | undefined;

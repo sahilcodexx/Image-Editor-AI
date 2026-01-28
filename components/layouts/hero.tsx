@@ -9,7 +9,7 @@ const HeroSection = () => {
   return (
     <Container className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-15 pb-20 text-center">
       <div className="flex w-full items-center justify-center">
-        <div className="flex items-center gap-2 rounded-2xl border-2 px-4 py-1 shadow-sm shadow-red-400/40">
+        <div className="flex items-center gap-2 rounded-2xl border-2 px-4 py-1 ">
           <AnimatedShinyText>
             For fast moving engineering teams
           </AnimatedShinyText>
@@ -21,13 +21,10 @@ const HeroSection = () => {
       </div>
 
       <div className="mx-auto mt-6 max-w-4xl px-6">
-        <h1 className="mt-4 text-center text-3xl font-medium tracking-tight text-black md:text-5xl lg:text-7xl dark:text-white">
+        <h1 className="text-primary/50 mt-4 text-center text-3xl font-normal tracking-tight md:text-5xl lg:text-7xl">
           Simple Tools for <br />
-          Better
-          <span className="font-semibold text-red-600/80 dark:text-orange-600">
-            {" "}
-            Images
-          </span>
+          <span className="text-primary font-semibold"> Better {""}</span>
+          Images
         </h1>
         <p className="mx-auto mt-6 mb-8 max-w-lg text-xs leading-tight text-neutral-500 md:text-base dark:text-neutral-400">
           Edit images easily using AI and intuitive tools built for{" "}
@@ -42,9 +39,11 @@ const HeroSection = () => {
 
         <div className="mb-12 flex items-center justify-center gap-6 sm:flex-row">
           <Link href={"/dashboard"}>
-            <Button variant="custom">Start Creating</Button>
+            <Button>Start Creating</Button>
           </Link>
-          <Button variant="outline">Watch Demo</Button>
+          <Button variant="outline" className="border border-black/20">
+            Watch Demo
+          </Button>
         </div>
       </div>
       <HeroVideoDialogDemoTopInBottomOut />

@@ -1,21 +1,25 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-  // turbopack: {
-  //   root: __dirname,
-  // },
+  reactStrictMode: false,
+
   images: {
+    unoptimized: isDev, //  dev 
     remotePatterns: [
       {
         protocol: "https",
         hostname: "images.unsplash.com",
-        port: "",
         pathname: "/**",
       },
     ],
   },
-  reactCompiler: false,
+
+  experimental: {
+    workerThreads: !isDev, // dev 
+    cpus: isDev ? 1 : undefined, // dev 
+  },
 };
 
 export default nextConfig;

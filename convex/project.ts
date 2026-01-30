@@ -4,19 +4,7 @@ import { api } from "./_generated/api";
 import { MutationCtx, QueryCtx } from "./_generated/server";
 import { Id } from "./_generated/dataModel";
 
-type Project = {
-  _id: Id<"project">;
-  title: string;
-  userId: Id<"users">; 
-  canvasState: unknown; 
-  width: number;
-  height: number;
-  originalImageUrl?: string;
-  currentImageUrl?: string;
-  thumbnailUrl?: string;
-  createdAt: number;
-  updatedAt: number;
-};
+import { Project } from "../utils/types";
 
 export const create = mutation({
   args: {

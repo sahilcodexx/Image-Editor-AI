@@ -1,3 +1,6 @@
+"use client";
+
+import UpgradeModel from "@/components/common/upgrade-model";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -67,18 +70,18 @@ const ProjectOpenModel = ({ isOpen, onClose }: ProjectOpenModelProps) => {
         throw new Error(uploadData.error || "failed to upload image");
       }
 
-      const projectId = createProject({
-        tilte: projectTitle.trim(),
-        orginalImage: uploadData.url,
+      const projectId = await createProject({
+        title: projectTitle.trim(),
+        originalImageUrl: uploadData.url,
         currentImageUrl: uploadData.url,
         thumbnailUrl: uploadData.url,
-        width: uploadData.witdh || 800,
+        width: uploadData.width || 800,
         height: uploadData.height || 600,
         canvasState: null,
       });
 
       toast.success("Project created Succesfully!");
-      router.push("/eidtor/${projectId");
+      router.push(`/editor/${projectId}`);
     } catch (error: unknown) {
       console.log(error);
       toast.error(
@@ -202,7 +205,7 @@ const ProjectOpenModel = ({ isOpen, onClose }: ProjectOpenModelProps) => {
                   />
                 </div>
                 <div
-                  className={`" dark:bg-input/30 border-input md:text-sm", "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]", flex h-18 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs`}
+                  className={`dark:bg-input/30 border-input flex h-18 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs md:text-sm`}
                 >
                   <div className="flex items-center gap-4">
                     <ImageIcon className="text-primary h-5 w-5" />
@@ -232,6 +235,12 @@ const ProjectOpenModel = ({ isOpen, onClose }: ProjectOpenModelProps) => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      <UpgradeModel
+        isOpen={showupgrade}
+        onClose={() => setShowupgrade(false)}
+        restrictedTool="project"
+        reason="Free plan is limited to 3 projects. Upgrade to Pro for unlimated projects and access to all AI editing tools"
+      />
     </div>
   );
 };

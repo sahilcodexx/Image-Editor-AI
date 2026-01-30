@@ -1,19 +1,7 @@
 import { Id } from "./_generated/dataModel";
 import { mutation, query } from "./_generated/server";
 
-export type User = {
-  _id: Id<"users">;
-  _creationTime: number; // Convex adds this automatically
-  name: string;
-  tokenIdentifier: string;
-  email: string;
-  plan: "free" | "pro";
-  projectUsed: number;
-  exportProjectThisMonth: number;
-  createdAt: number;
-  lastActive: number;
-  imageUrl?: string; // optional
-};
+import { User } from "../utils/types";
 
 export const store = mutation({
   args: {},

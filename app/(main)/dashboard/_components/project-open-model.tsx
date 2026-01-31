@@ -44,7 +44,7 @@ const ProjectOpenModel = ({ isOpen, onClose }: ProjectOpenModelProps) => {
   const canCreate = canCreateProject(currenprojectcount);
 
   const handleCreateProject = async () => {
-    if (!canCreate) {
+    if (true) {
       setShowupgrade(true);
       return;
     }
@@ -56,8 +56,11 @@ const ProjectOpenModel = ({ isOpen, onClose }: ProjectOpenModelProps) => {
     setIsUploading(true);
 
     try {
+      if (!selectedFile) {
+        throw new Error("No file selected");
+      }
       const formData = new FormData();
-      formData.append("file", selectedFile);
+      formData.append("file", selectedFile as Blob);
       formData.append("fileName", selectedFile.name);
 
       const uploadResponse = await fetch("api/imagekit/upload", {

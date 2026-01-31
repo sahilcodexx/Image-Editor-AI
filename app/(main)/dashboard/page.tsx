@@ -7,6 +7,7 @@ import { useConvexQuery } from "@/hooks/use-convex-query";
 import { Loader2, Plus } from "lucide-react";
 import { useState } from "react";
 import ProjectOpenModel from "./_components/project-open-model";
+import ProjectGrid from "./_components/project-grid";
 
 const Dashboard = () => {
   const [showNewProject, setShowNewProject] = useState<boolean>(false);
@@ -43,7 +44,7 @@ const Dashboard = () => {
           <span className="animate-spin">
             <Loader2 height={50} width={40} />
           </span>
-        ) : projects && projects.length > 0 ? null : (
+        ) : projects && projects.length > 0 ? <ProjectGrid projects={projects unknown[] | undefined;} /> : (
           <>
             <SvgImage />
             <h2 className="text-3xl font-medium md:text-4xl">

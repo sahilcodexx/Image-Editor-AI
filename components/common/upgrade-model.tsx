@@ -2,11 +2,14 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { UpgradeModalProps } from "@/utils/types";
+import { CrownIcon, Zap } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { PricingTable } from "@clerk/nextjs";
 
 const UpgradeModel = ({
   isOpen,
@@ -24,19 +27,46 @@ const UpgradeModel = ({
   };
 
   return (
-    <div>
-      <Dialog>
-        <DialogTrigger open={isOpen} onOpenChange={onClose}>
-          Open
-        </DialogTrigger>
-        <DialogContent>
+    <div className="w-full">
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className="w-full sm:max-w-4xl max-h-[90vh] overflow-y-auto ">
           <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogTitle className="flex items-center gap-2">
+              Upgrade to Pro <CrownIcon className="h-4 w-4" />
+            </DialogTitle>
             <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              This will be your last free project. Upgrade to Pro for Unlimated
+              projects.
             </DialogDescription>
           </DialogHeader>
+          <div className="space-y-6 w-full">
+            {restrictedTool && (
+              <Alert className=" border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50 ">
+                <Zap />
+                <AlertDescription>
+                  <p>{getToolName(restrictedTool)} -pro feature</p>
+                  {reason && (
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {reason}
+                    </p>
+                  )}
+                </AlertDescription>
+              </Alert>
+            )}
+          </div>
+          <DialogFooter>
+            <PricingTable
+              checkoutProps={{
+                appearance: {
+                  elements: {
+                    drawerRoot: {
+                      zIndex: 20000,
+                    },
+                  },
+                },
+              }}
+             />
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>

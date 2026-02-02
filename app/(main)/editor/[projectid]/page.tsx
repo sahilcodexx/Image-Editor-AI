@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import { HashLoader } from "react-spinners";
 import CanvasEditor from "../_components/canvas-editor";
+import { Project } from "@/utils/types";
 
 const Editor = () => {
   const { projectid } = useParams();
@@ -23,7 +24,9 @@ const Editor = () => {
   } = useConvexQuery(api.project.getProject, { projectId: projectid });
 
   // Ensure project has all required properties
-  const projectWithId = project && { ...project, _id: projectid };
+  const projectWithId = project
+    ? ({ ...project, _id: projectid } as Project)
+    : null;
 
   if (isLoading) {
     return (
@@ -71,7 +74,7 @@ const Editor = () => {
           </p>
         </div>
       </div>
-      <div className="hidden min-h-screen lg:block bg-neutral-900">
+      <div className="hidden min-h-screen bg-neutral-900 lg:block">
         <div>
           {processingMessage && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs">
@@ -89,9 +92,9 @@ const Editor = () => {
             </div>
           )}
           <div className="hidden lg:block"></div>
-          <div className="flex flex-1 overflow-hidden min-h-screen">
+          <div className="flex min-h-screen flex-1 overflow-hidden">
             <div className="flex-1">
-              <CanvasEditor project={project} />
+              <CanvasEditor project={projectWithId!} />
             </div>
           </div>
           <div className=""></div>

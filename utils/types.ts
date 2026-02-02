@@ -23,7 +23,7 @@ export interface Project {
 }
 
 export type UpdateDate = {
-  updateAt: number;
+  updatedAt: number;
   canvasState?: unknown;
   width?: number;
   height?: number;

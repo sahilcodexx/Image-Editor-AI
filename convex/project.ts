@@ -154,7 +154,7 @@ export const updateProject = mutation({
     }
 
     const updateData: UpdateDate = {
-      updateAt: Date.now(),
+      updatedAt: Date.now(),
     };
     if (args.canvasState !== undefined)
       updateData.canvasState = args.canvasState;

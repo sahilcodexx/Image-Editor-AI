@@ -8,6 +8,8 @@ import { useState } from "react";
 import { HashLoader } from "react-spinners";
 import CanvasEditor from "../_components/canvas-editor";
 import { Project } from "@/utils/types";
+import EditorTopbar from "../_components/editor-topbar";
+import EditorSidebar from "../_components/editor-sidebar";
 
 const Editor = () => {
   const { projectid } = useParams();
@@ -74,7 +76,7 @@ const Editor = () => {
           </p>
         </div>
       </div>
-      <div className="hidden min-h-screen bg-neutral-900 lg:block">
+      <div className="hidden min-h-screen dark:bg-neutral-900 lg:block">
         <div>
           {processingMessage && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs">
@@ -91,8 +93,9 @@ const Editor = () => {
               </div>
             </div>
           )}
-          <div className="hidden lg:block"></div>
+          <EditorTopbar project={projectWithId!} />
           <div className="flex min-h-screen flex-1 overflow-hidden">
+            <EditorSidebar project={projectWithId!} />
             <div className="flex-1">
               <CanvasEditor project={projectWithId!} />
             </div>

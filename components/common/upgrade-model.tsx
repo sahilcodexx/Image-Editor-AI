@@ -29,7 +29,7 @@ const UpgradeModel = ({
   return (
     <div className="w-full">
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="w-full sm:max-w-4xl max-h-[90vh] overflow-y-auto ">
+        <DialogContent className="max-h-[90vh] w-full overflow-y-auto sm:max-w-4xl">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               Upgrade to Pro <CrownIcon className="h-4 w-4" />
@@ -39,14 +39,16 @@ const UpgradeModel = ({
               projects.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-6 w-full">
+          <div className="w-full space-y-6">
             {restrictedTool && (
-              <Alert className=" border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50 ">
+              <Alert className="border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50">
                 <Zap />
                 <AlertDescription>
-                  <p>{getToolName(restrictedTool)} -pro feature</p>
+                  <p className="text-base text-orange-500">
+                    {getToolName(restrictedTool)} -pro feature
+                  </p>
                   {reason && (
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-gray-500 dark:text-gray-200">
                       {reason}
                     </p>
                   )}
@@ -65,7 +67,7 @@ const UpgradeModel = ({
                   },
                 },
               }}
-             />
+            />
           </DialogFooter>
         </DialogContent>
       </Dialog>

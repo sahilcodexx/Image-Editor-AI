@@ -2,10 +2,10 @@ import { useAuth } from "@clerk/nextjs";
 type planAccess = {
   resize: true;
   crop: true;
-  adjust: false;
+  adjust: true;
   text: true;
   background: false;
-  ai_extender: true;
+  ai_extender: false;
   ai_edit: false;
 };
 

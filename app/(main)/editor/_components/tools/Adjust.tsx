@@ -1,9 +1,9 @@
 "use client";
+import fabric, { filters, Image as FabricImage } from "fabric";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { useCanvas } from "@/context/context";
 import { FilterConfig } from "@/utils/types";
-import { filters } from "fabric";
 import { RotateCcw } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -94,15 +94,20 @@ const AdjustControl = () => {
 
   const getLocalStorageKey = () => `project-filters-${projectid}`;
 
-  const getActiveImage = () => {
+  const getActiveImage = (): FabricImage | null => {
     if (!canvasEditor) return null;
     const activeObject = canvasEditor.getActiveObject();
-    if (activeObject && activeObject.type === "image") return activeObject;
+    if (activeObject && activeObject.type === "image")
+      return activeObject as FabricImage;
     const objects = canvasEditor.getObjects();
-    return objects.find((obj: any) => obj.type === "image") || null;
+    return (
+      (objects.find(
+        (obj: fabric.Object) => obj.type === "image",
+      ) as FabricImage) || null
+    );
   };
 
-  const extractFilterValues = (imageObject: fabric.Image | null) => {
+  const extractFilterValues = (imageObject: FabricImage | null) => {
     if (!imageObject?.filters?.length) return DEFAULT_VALUES;
     const extractedValue = { ...DEFAULT_VALUES };
     imageObject.filters.forEach((filter) => {
@@ -122,6 +127,7 @@ const AdjustControl = () => {
     });
     return extractedValue;
   };
+
 
   useEffect(() => {
     const imageObject = getActiveImage();
@@ -146,7 +152,7 @@ const AdjustControl = () => {
     setIsApplying(true);
 
     try {
-      const filtersToApply: fabric.Image.filters.BaseFilter[] = [];
+      const filtersToApply:any[] = [];
       FILTER_CONFIGS.forEach((config) => {
         const value = newValue[config.key];
         if (value !== config.defaultValue) {

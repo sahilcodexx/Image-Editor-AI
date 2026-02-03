@@ -13,6 +13,7 @@ import {
 import AdjustControl from "./tools/Adjust";
 import { ResizeContent } from "./tools/Resize";
 import { CropContent } from "./tools/Crop";
+import BackgroundControls from "./tools/background-controls";
 
 const TOOL_CONFIGS: Record<string, ToolConfig> = {
   resize: {
@@ -84,6 +85,8 @@ const renderToolConfig = (activeTool: string, project: Project) => {
       return <ResizeContent project={project} />;
     case "adjust":
       return <AdjustControl />;
+    case "background":
+      return <BackgroundControls project={project} />;
     default:
       return <div>Select a Tool to get started</div>;
   }

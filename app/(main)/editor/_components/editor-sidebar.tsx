@@ -13,7 +13,8 @@ import {
 import AdjustControl from "./tools/Adjust";
 import { ResizeContent } from "./tools/Resize";
 import { CropContent } from "./tools/Crop";
-import BackgroundControls from "./tools/background-controls";
+import { BackgroundControls } from "./tools/background-controls";
+
 
 const TOOL_CONFIGS: Record<string, ToolConfig> = {
   resize: {

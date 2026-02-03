@@ -1,5 +1,11 @@
 import { Dispatch, SetStateAction } from "react";
 import { Id } from "../convex/_generated/dataModel";
+import { ComponentType } from "react";
+import { ComponentProps } from "react";
+
+type LucideReact = any;
+
+type IconType = ComponentType<ComponentProps<any>>;
 
 export type UpgradeModalProps = {
   isOpen: boolean;
@@ -60,6 +66,20 @@ export type CanvasContextType = {
 
 export interface ToolConfig {
   title: string;
-  icon: React.ComponentType<React.ComponentProps<typeof LucideReact>>;
+  icon: IconType;
   description: string;
+}
+
+
+export interface FilterConfig {
+  key: string;
+  label: string;
+  min: number;
+  max: number;
+  step: number;
+  defaultValue: number;
+  filterClass: any;
+  valueKey: string;
+  transform: (value: number) => number;
+  suffix?: string;
 }

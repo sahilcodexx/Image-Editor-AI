@@ -128,14 +128,14 @@ const EditorTopbar = ({ project }: { project: Project }) => {
             <Button
               variant="ghost"
               size="sm"
-              className={`cursor-not-allowed bg-neutral-500 text-white opacity-50`}
+              className={`cursor-not-allowed opacity-50 transition-colors duration-200 hover:bg-neutral-200/90`}
             >
               <RotateCcw className="h-4 w-4" />
             </Button>
             <Button
               variant="ghost"
               size="sm"
-              className={`cursor-not-allowed text-white opacity-50`}
+              className={`cursor-not-allowed opacity-50 transition-colors duration-200 hover:bg-neutral-200/50`}
             >
               <RotateCw className="h-4 w-4" />
             </Button>

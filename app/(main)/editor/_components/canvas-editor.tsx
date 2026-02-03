@@ -186,6 +186,22 @@ const CanvasEditor = ({ project }: { project: Project }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, [canvasEditor, project]);
 
+  useEffect(() => {
+    if (!canvasEditor) return;
+
+    switch (activeTool) {
+      case "crop":
+        canvasEditor.defaultCursor = "default";
+        canvasEditor.hoverCursor = "crosshair";
+        break;
+
+      default:
+        canvasEditor.defaultCursor = "default";
+        canvasEditor.hoverCursor = "move";
+        break;
+    }
+  }, [canvasEditor, activeTool]);
+
   return (
     <div
       ref={containerRef}

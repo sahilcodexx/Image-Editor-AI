@@ -10,6 +10,9 @@ import {
   Text,
   Eye,
 } from "lucide-react";
+import CropContent from "./tools/Crop";
+import ResizeContent from "./tools/Resize";
+import AdjustControl from "./tools/Adjust";
 
 const TOOL_CONFIGS: Record<string, ToolConfig> = {
   resize: {
@@ -52,7 +55,36 @@ const EditorSidebar = ({ project }: { project: Project }) => {
   const { activeTool } = useCanvas();
 
   const toolConfig = TOOL_CONFIGS[activeTool];
-  return <div>EditorSidebar</div>;
+  if (!toolConfig) {
+    return null;
+  }
+
+  const Icon = toolConfig.icon;
+  return (
+    <div className="flex min-w-80 flex-col border-r dark:bg-neutral-950/80">
+      <div className="border-b p-4">
+        <div className="flex items-center gap-3">
+          <Icon className="h-4 w-4" />
+          <h2>{toolConfig.title}</h2>
+        </div>
+        <p className="mt-1 text-sm">{toolConfig.description}</p>
+      </div>
+      <div className="flex-1 p-4">{renderToolConfig(activeTool, project)}</div>
+    </div>
+  );
 };
 
 export default EditorSidebar;
+
+const renderToolConfig = (activeTool: string, project: Project) => {
+  switch (activeTool) {
+    case "crop":
+      return <CropContent />;
+    case "resize":
+      return <ResizeContent project={project} />;
+    case "adjust":
+      return <AdjustControl />;
+    default:
+      return <div>Select a Tool to get started</div>;
+  }
+};

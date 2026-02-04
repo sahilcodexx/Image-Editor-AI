@@ -7,16 +7,16 @@ import { VideoPlayer } from "../ui/video-player";
 
 const HeroSection = () => {
   return (
-    <Container className=" relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-0 pb-20 text-center ">
+    <Container className=" relative flex min-h-screen flex-col items-center justify-center overflow-hidden  pb-20 text-center ">
       <div className="bg-primary absolute bottom-94 h-50 w-50 scale-135 opacity-40 blur-3xl"></div>
       <div className="flex w-full items-center justify-center">
         <div className="flex items-center gap-2 rounded-2xl border-2 px-4 py-1 text-xs">
-          <AnimatedShinyText>
-            For fast moving engineering teams
-          </AnimatedShinyText>
+            <AnimatedShinyText>
+            Edit images easily with AI
+            </AnimatedShinyText>
           <ArrowRight
-            size={18}
-            className="text-red-600/70 dark:text-orange-400/70"
+            size={16}
+            className="text-red-600/70 dark:text-primary/80"
           />
         </div>
       </div>

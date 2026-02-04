@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${atma.variable} antialiased`}>
+      <body className={`${inter.className} ${atma.variable} antialiased `}>
         {" "}
         // modified
         <ThemeProvider

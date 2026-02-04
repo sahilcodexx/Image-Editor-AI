@@ -4,6 +4,7 @@ import Container from "../common/container";
 import Link from "next/link";
 import { CheckoutButton } from "@clerk/nextjs/experimental";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import SectionHeading from "../common/section-heading";
 
 export default function PricingCards() {
   const planId = "cplan_38lbLCIiQTjK6kv6sp6hab6hXoX";
@@ -66,7 +67,11 @@ export default function PricingCards() {
   ];
 
   return (
-    <Container>
+    <Container className="pb-30">
+      <SectionHeading
+        title="Pricing Plans"
+        description="Choose the perfect plan for your needs and budget. we have a plan that's right for you."
+      />
       <div className="m-auto max-w-3xl">
         <div className="mx-auto grid w-full max-w-225 grid-cols-1 gap-8 md:grid-cols-2">
           <div
@@ -92,7 +97,8 @@ export default function PricingCards() {
                     Starter
                   </h2>
                   <p className="mt-1 text-base leading-relaxed text-neutral-600">
-                    Launch quickly with a solid landing page.
+                    Launch quickly with a solid landing page and basic features.
+                    Perfect for individuals and small teams.
                   </p>
                 </div>
                 <span className="inline-flex items-center rounded-full border border-neutral-200 bg-white/70 px-3 py-1 text-xs font-medium text-nowrap text-neutral-700 shadow-sm backdrop-blur">
@@ -170,7 +176,8 @@ export default function PricingCards() {
                     Pro
                   </h2>
                   <p className="mt-1 text-base leading-relaxed text-neutral-400">
-                    Go further with more concepts and polish.
+                    Go further with more concepts, advanced features, and
+                    priority support. Ideal for growing businesses and agencies.
                   </p>
                 </div>
                 <span className="inline-flex items-center rounded-full border border-neutral-700 bg-neutral-900/50 px-3 py-1 text-xs font-medium text-nowrap text-neutral-300 backdrop-blur">

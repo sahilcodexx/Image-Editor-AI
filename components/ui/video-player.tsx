@@ -2,7 +2,7 @@ import { HeroVideoDialog } from "./hero-video-dialog";
 
 export function VideoPlayer() {
   return (
-    <div className="outer-shadow relative mx-3 mt-20 rounded-[14px] border p-2.5 md:mx-0">
+    <div className="outer-shadow relative mx-3 mt-10 rounded-[14px] border p-2.5 md:mx-0">
       <HeroVideoDialog
         className="block dark:hidden"
         animationStyle="top-in-bottom-out"

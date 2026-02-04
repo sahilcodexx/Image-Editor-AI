@@ -36,7 +36,7 @@ const Header = () => {
           <ul className="flex gap-4 text-sm">
             <li>
               <Link
-                href={"/feature"}
+                href={"/#features"}
                 className="cursor-pointer transition-all duration-200 hover:text-neutral-500 dark:hover:text-neutral-400"
               >
                 Feature

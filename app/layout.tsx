@@ -7,6 +7,8 @@ import { ConvexClientProvider } from "./ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 
+import { ReactLenis } from "@/utils/lenis";
+
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -30,24 +32,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${atma.variable} antialiased `}>
-        {" "}
-        // modified
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ClerkProvider>
-            <ConvexClientProvider>
-              <Header />
-              {children}
-              <Toaster />
-            </ConvexClientProvider>
-          </ClerkProvider>
-        </ThemeProvider>
-      </body>
+      <ReactLenis root>
+        <body className={`${inter.className} ${atma.variable} antialiased`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ClerkProvider>
+              <ConvexClientProvider>
+                <Header />
+                {children}
+                <Toaster />
+              </ConvexClientProvider>
+            </ClerkProvider>
+          </ThemeProvider>
+        </body>
+      </ReactLenis>
     </html>
   );
 }

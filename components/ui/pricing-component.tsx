@@ -177,7 +177,7 @@ export default function PricingCards() {
                   </h2>
                   <p className="mt-1 text-base leading-relaxed text-neutral-400">
                     Go further with more concepts, advanced features, and
-                    priority support. Ideal for growing businesses and agencies.
+                    priority support. Ideal for Everyone.
                   </p>
                 </div>
                 <span className="inline-flex items-center rounded-full border border-neutral-700 bg-neutral-900/50 px-3 py-1 text-xs font-medium text-nowrap text-neutral-300 backdrop-blur">

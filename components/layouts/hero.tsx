@@ -3,7 +3,8 @@ import { Button } from "../ui/button";
 import Container from "../common/container";
 import { AnimatedShinyText } from "../ui/animated-shiny-text";
 import { ArrowRight } from "lucide-react";
-import { VideoPlayer } from "../ui/video-player";
+import VideoPlayer from "../ui/video-player";
+
 
 const HeroSection = () => {
   return (
@@ -47,7 +48,7 @@ const HeroSection = () => {
           </Button>
         </div>
       </div>
-      <VideoPlayer />
+      <VideoPlayer src="https://ik.imagekit.io/sahilcodex/sample-video.mp4?updatedAt=1768760211889"/>
     </Container>
   );
 };

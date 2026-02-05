@@ -6,8 +6,8 @@ import Header from "@/components/common/header";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
-
 import { ReactLenis } from "@/utils/lenis";
+import Footer from "@/components/common/footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,6 +44,7 @@ export default function RootLayout({
               <ConvexClientProvider>
                 <Header />
                 {children}
+                <Footer />
                 <Toaster />
               </ConvexClientProvider>
             </ClerkProvider>

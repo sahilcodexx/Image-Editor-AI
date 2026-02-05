@@ -5,19 +5,16 @@ import { AnimatedShinyText } from "../ui/animated-shiny-text";
 import { ArrowRight } from "lucide-react";
 import VideoPlayer from "../ui/video-player";
 
-
 const HeroSection = () => {
   return (
-    <Container className=" relative flex min-h-screen flex-col items-center justify-center overflow-hidden  pb-20 text-center ">
+    <Container className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden pb-20 text-center">
       <div className="bg-primary absolute bottom-94 h-50 w-50 scale-135 opacity-40 blur-3xl"></div>
       <div className="flex w-full items-center justify-center">
         <div className="flex items-center gap-2 rounded-2xl border-2 px-4 py-1 text-xs">
-            <AnimatedShinyText>
-            Edit images easily with AI
-            </AnimatedShinyText>
+          <AnimatedShinyText>Edit images easily with AI</AnimatedShinyText>
           <ArrowRight
             size={16}
-            className="text-red-600/70 dark:text-primary/80"
+            className="dark:text-primary/80 text-red-600/70"
           />
         </div>
       </div>
@@ -43,12 +40,18 @@ const HeroSection = () => {
           <Link href={"/dashboard"}>
             <Button>Start Creating</Button>
           </Link>
-          <Button variant="outline" className="border border-black/20">
-            Watch Demo
-          </Button>
+          <Link
+            href={
+              "https://ik.imagekit.io/sahilcodex/Cap%202026-02-05%20at%2013.08.16.webm"
+            }
+          >
+            <Button variant="outline" className="border border-black/20">
+              Watch Demo
+            </Button>
+          </Link>
         </div>
       </div>
-      <VideoPlayer src="https://ik.imagekit.io/sahilcodex/sample-video.mp4?updatedAt=1768760211889"/>
+      <VideoPlayer src="https://ik.imagekit.io/sahilcodex/Cap%202026-02-05%20at%2013.08.16.webm" />
     </Container>
   );
 };

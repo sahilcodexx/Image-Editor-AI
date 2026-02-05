@@ -1,6 +1,5 @@
 "use client";
 import { useTheme } from "next-themes";
-import Image from "next/image";
 import Link from "next/link";
 import { ModeToggle } from "../theme-toggle";
 import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
@@ -22,15 +21,8 @@ const Header = () => {
   return (
     <header className="fixed top-0 z-50 w-full backdrop-blur-2xl">
       <div className="m-auto flex w-full max-w-7xl items-center justify-between px-4 py-5 md:px-15">
-        <Link href={"/"}>
-          <Image
-            src={"/whitelogo.webp"}
-            alt="logo"
-            width={50}
-            height={40}
-            priority
-            className="min-w-24 object-cover invert dark:invert-0"
-          ></Image>
+        <Link href={"/"} className="flex items-end text-2xl font-semibold">
+          <h2 className="h-full [font-family:var(--font-atma)]">Repimly</h2>
         </Link>
         <div className="hidden md:flex">
           <ul className="flex gap-4 text-sm">

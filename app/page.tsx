@@ -1,7 +1,6 @@
 import Container from "@/components/common/container";
 import { FeaturesSection } from "@/components/features-section";
 import HeroSection from "@/components/layouts/hero";
-
 import { MarqueeCard } from "@/components/ui/marquee.";
 import PricingCards from "@/components/ui/pricing-component";
 import { Stats } from "@/components/ui/stats-section";

@@ -156,21 +156,21 @@ export function ResizeContent({ project }: { project: Project }) {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-lg bg-slate-700/30 p-3">
-        <h4 className="mb-2 text-sm font-medium text-white">Current Size</h4>
-        <div className="text-xs text-white/70">
+      <div className="rounded-lg bg-neutral-200/50 p-3 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80">
+        <h4 className="mb-2 text-sm font-medium">Current Size</h4>
+        <div className="text-xs opacity-70">
           {project.width} × {project.height} pixels
         </div>
       </div>
 
       <div className="space-y-4">
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-sm font-medium text-white">Custom Size</h3>
+          <h3 className="text-sm font-medium">Custom Size</h3>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setLockAspectRatio(!lockAspectRatio)}
-            className="p-1 text-white/70 hover:text-white"
+            className="p-1 opacity-50 hover:opacity-70"
           >
             {lockAspectRatio ? (
               <Lock className="h-4 w-4" />
@@ -182,38 +182,38 @@ export function ResizeContent({ project }: { project: Project }) {
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="mb-1 block text-xs text-white/70">Width</label>
+            <label className="mb-1 block text-xs opacity-70">Width</label>
             <Input
               type="number"
               value={newWidth}
               onChange={(e) => handleWidthChange(e.target.value)}
               min="100"
               max="5000"
-              className="border-white/20 bg-slate-700 text-white"
+              className="bg-neutral-200/50 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs text-white/70">Height</label>
+            <label className="mb-1 block text-xs opacity-70">Height</label>
             <Input
               type="number"
               value={newHeight}
               onChange={(e) => handleHeightChange(e.target.value)}
               min="100"
               max="5000"
-              className="border-white/20 bg-slate-700 text-white"
+              className="bg-neutral-200/50 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80"
             />
           </div>
         </div>
 
         <div className="flex items-center justify-between text-xs">
-          <span className="text-white/70">
+          <span className="opacity-70">
             {lockAspectRatio ? "Aspect ratio locked" : "Free resize"}
           </span>
         </div>
       </div>
 
       <div className="space-y-3">
-        <h3 className="text-sm font-medium text-white">Aspect Ratios</h3>
+        <h3 className="text-sm font-medium ">Aspect Ratios</h3>
         <div className="grid max-h-60 grid-cols-1 gap-2 overflow-y-auto">
           {ASPECT_RATIOS.map((aspectRatio) => {
             const dimensions = calculateAspectRatioDimensions(
@@ -229,7 +229,7 @@ export function ResizeContent({ project }: { project: Project }) {
                 onClick={() => applyAspectRatio(aspectRatio)}
                 className={`h-auto justify-between py-2 ${
                   selectedPreset === aspectRatio.name
-                    ? "bg-cyan-500 hover:bg-cyan-600"
+                    ? "bg-neutral-600 hover:bg-neutral-500"
                     : "text-left"
                 }`}
               >
@@ -248,20 +248,20 @@ export function ResizeContent({ project }: { project: Project }) {
       </div>
 
       {hasChanges && (
-        <div className="rounded-lg bg-slate-700/30 p-3">
-          <h4 className="mb-2 text-sm font-medium text-white">
+        <div className="rounded-lg bg-neutral-200/50 p-3 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80">
+          <h4 className="mb-2 text-sm font-medium ">
             New Size Preview
           </h4>
-          <div className="text-xs text-white/70">
+          <div className="text-xs opacity-70">
             <div>
               New Canvas: {newWidth} × {newHeight} pixels
             </div>
-            <div className="text-cyan-400">
+            <div className="text-red-500">
               {newWidth > project.width || newHeight > project.height
                 ? "Canvas will be expanded"
                 : "Canvas will be cropped"}
             </div>
-            <div className="mt-1 text-white/50">
+            <div className="mt-1 text-black/60 dark:text-white/60">
               Objects will maintain their current size and position
             </div>
           </div>

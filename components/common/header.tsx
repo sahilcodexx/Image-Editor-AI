@@ -81,8 +81,8 @@ const Header = () => {
         {isLoading && (
           <div className="fixed bottom-0 left-0 z-40 flex w-full justify-center">
             <BarLoader
-              height={"0.5px"}
-              width={"100%"}
+              height="0.5px"
+              width="100%"
               color={theme === "light" ? "#0a0a0a" : "#fafafa"}
             />
           </div>

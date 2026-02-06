@@ -196,8 +196,8 @@ export function TextControls() {
       {/* Add Text Button */}
       <div className="space-y-4">
         <div>
-          <h3 className="mb-2 text-sm font-medium text-white">Add Text</h3>
-          <p className="mb-4 text-xs text-white/70">
+          <h3 className="mb-2 text-sm font-medium">Add Text</h3>
+          <p className="mb-4 text-xs opacity-70">
             Click to add editable text to your canvas
           </p>
         </div>
@@ -220,7 +220,7 @@ export function TextControls() {
             <select
               value={fontFamily}
               onChange={(e) => applyFontFamily(e.target.value)}
-              className="w-full rounded border border-white/20 dark:bg-neutral-800 bg-primary px-3 py-2 text-sm text-white"
+              className="bg-primary w-full rounded border border-white/20 px-3 py-2 text-sm text-white dark:bg-neutral-800"
             >
               {FONT_FAMILIES.map((font) => (
                 <option key={font} value={font}>
@@ -338,8 +338,8 @@ export function TextControls() {
       )}
 
       {/* Instructions */}
-      <div className="rounded-lg bg-slate-700/30 p-3">
-        <p className="text-xs text-white/70">
+      <div className="rounded-lg bg-neutral-200/50 p-3 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80">
+        <p className="text-xs opacity-70">
           <strong>Double-click</strong> any text to edit it directly on canvas.
           <br />
           <strong>Select</strong> text to see formatting options here.

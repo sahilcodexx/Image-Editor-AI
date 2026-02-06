@@ -12,12 +12,13 @@ import { Project } from "@/utils/types";
 
 type Direction = "top" | "bottom" | "left" | "right";
 
-const DIRECTIONS: { key: Direction; label: string; icon: React.ElementType }[] = [
-  { key: "top", label: "Top", icon: ArrowUp },
-  { key: "bottom", label: "Bottom", icon: ArrowDown },
-  { key: "left", label: "Left", icon: ArrowLeft },
-  { key: "right", label: "Right", icon: ArrowRight },
-];
+const DIRECTIONS: { key: Direction; label: string; icon: React.ElementType }[] =
+  [
+    { key: "top", label: "Top", icon: ArrowUp },
+    { key: "bottom", label: "Bottom", icon: ArrowDown },
+    { key: "left", label: "Left", icon: ArrowLeft },
+    { key: "right", label: "Right", icon: ArrowRight },
+  ];
 
 const FOCUS_MAP: Record<Direction, string> = {
   left: "fo-right",
@@ -39,7 +40,8 @@ export function AIExtenderControls({ project }: { project: Project }) {
   const getMainImage = (): fabric.Image | null =>
     (canvasEditor
       ?.getObjects()
-      .find((obj:fabric.Object) => obj.type === "image") as fabric.Image) || null;
+      .find((obj: fabric.Object) => obj.type === "image") as fabric.Image) ||
+    null;
 
   const getImageSrc = (image: fabric.Image | null): string =>
     image?.getSrc() ?? (image as any)?._element?.src ?? "";
@@ -184,10 +186,8 @@ export function AIExtenderControls({ project }: { project: Project }) {
     <div className="space-y-6">
       {/* Direction Selection */}
       <div>
-        <h3 className="mb-3 text-sm font-medium text-white">
-          Select Extension Direction
-        </h3>
-        <p className="mb-3 text-xs text-white/70">
+        <h3 className="mb-3 text-sm font-medium">Select Extension Direction</h3>
+        <p className="mb-3 text-xs opacity-70">
           Choose one direction to extend your image
         </p>
         <div className="grid grid-cols-2 gap-3">
@@ -197,7 +197,9 @@ export function AIExtenderControls({ project }: { project: Project }) {
               onClick={() => selectDirection(key)}
               variant={selectedDirection === key ? "default" : "outline"}
               className={`flex items-center gap-2 ${
-                selectedDirection === key ? "bg-cyan-500 hover:bg-cyan-600" : ""
+                selectedDirection === key
+                  ? "bg-primary hover:bg-primary/80"
+                  : ""
               }`}
             >
               <Icon className="h-4 w-4" />
@@ -210,8 +212,8 @@ export function AIExtenderControls({ project }: { project: Project }) {
       {/* Extension Amount */}
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <label className="text-sm text-white">Extension Amount</label>
-          <span className="text-xs text-white/70">{extensionAmount}px</span>
+          <label className="text-sm">Extension Amount</label>
+          <span className="text-xs opacity-70">{extensionAmount}px</span>
         </div>
         <Slider
           value={[extensionAmount]}
@@ -226,11 +228,11 @@ export function AIExtenderControls({ project }: { project: Project }) {
 
       {/* Dimensions Preview */}
       {selectedDirection && currentImage && (
-        <div className="rounded-lg bg-slate-700/30 p-3">
-          <h4 className="mb-2 text-sm font-medium text-white">
+        <div className="rounded-lg bg-neutral-200/50 p-3 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80">
+          <h4 className="mb-2 text-sm font-medium ">
             Extension Preview
           </h4>
-          <div className="space-y-1 text-xs text-white/70">
+          <div className="space-y-1 text-xs opacity-70">
             <div>
               Current:{" "}
               {Math.round(
@@ -242,13 +244,13 @@ export function AIExtenderControls({ project }: { project: Project }) {
               )}
               px
             </div>
-            <div className="text-cyan-400">
+            <div className="opacity-70">
               Extended: {newWidth} × {newHeight}px
             </div>
-            <div className="text-white/50">
+            <div className="opacity-80">
               Canvas: {project.width} × {project.height}px (unchanged)
             </div>
-            <div className="text-cyan-300">
+            <div className="opacity-70">
               Direction:{" "}
               {DIRECTIONS.find((d) => d.key === selectedDirection)?.label}
             </div>
@@ -268,8 +270,8 @@ export function AIExtenderControls({ project }: { project: Project }) {
       </Button>
 
       {/* Instructions */}
-      <div className="rounded-lg bg-slate-700/30 p-3">
-        <p className="text-xs text-white/70">
+      <div className="rounded-lg bg-neutral-200/50 p-3 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80">
+        <p className="text-xs opacity-70">
           <strong>How it works:</strong> Select one direction → Set amount →
           Apply extension. AI will intelligently fill the new area in that
           direction.

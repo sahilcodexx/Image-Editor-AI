@@ -49,7 +49,7 @@ export function CropContent() {
   const [selectedRatio, setSelectedRatio] = useState<number | null>(null);
   const [cropRect, setCropRect] = useState<Rect | null>(null);
   const [originalProps, setOriginalProps] = useState<OriginalImageProps | null>(
-    null
+    null,
   );
 
   // Get the currently selected or main image
@@ -63,7 +63,9 @@ export function CropContent() {
 
     const objects = canvasEditor.getObjects();
     return (
-      (objects.find((obj: fabric.Object) => obj.type === "image") as FabricImage) || null
+      (objects.find(
+        (obj: fabric.Object) => obj.type === "image",
+      ) as FabricImage) || null
     );
   };
 
@@ -72,9 +74,11 @@ export function CropContent() {
     if (!canvasEditor) return;
 
     const objects = canvasEditor.getObjects();
-    const rectsToRemove = objects.filter((obj: fabric.Object) => obj.type === "rect");
+    const rectsToRemove = objects.filter(
+      (obj: fabric.Object) => obj.type === "rect",
+    );
 
-    rectsToRemove.forEach((rect:any) => {
+    rectsToRemove.forEach((rect: any) => {
       canvasEditor.remove(rect);
     });
 
@@ -163,7 +167,6 @@ export function CropContent() {
       cornerStyle: "circle",
       borderColor: "#00bcd4",
       borderScaleFactor: 1,
-      
     });
 
     // Add custom control behavior
@@ -268,13 +271,10 @@ export function CropContent() {
       // Calculate crop relative to the original image
       const cropX = Math.max(0, cropBounds.left - imageBounds.left);
       const cropY = Math.max(0, cropBounds.top - imageBounds.top);
-      const cropWidth = Math.min(
-        cropBounds.width,
-        imageBounds.width - cropX
-      );
+      const cropWidth = Math.min(cropBounds.width, imageBounds.width - cropX);
       const cropHeight = Math.min(
         cropBounds.height,
-        imageBounds.height - cropY
+        imageBounds.height - cropY,
       );
 
       // Convert to image coordinate system (accounting for image scaling)
@@ -330,7 +330,7 @@ export function CropContent() {
   if (!canvasEditor) {
     return (
       <div className="p-4">
-        <p className="text-white/70 text-sm">Canvas not ready</p>
+        <p className="text-sm text-white/70">Canvas not ready</p>
       </div>
     );
   }
@@ -339,7 +339,7 @@ export function CropContent() {
   if (!activeImage && !isCropMode) {
     return (
       <div className="p-4">
-        <p className="text-white/70 text-sm">Select an image to crop</p>
+        <p className="text-sm text-white/70">Select an image to crop</p>
       </div>
     );
   }
@@ -348,11 +348,9 @@ export function CropContent() {
     <div className="space-y-6">
       {/* Crop Mode Status */}
       {isCropMode && (
-        <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
-          <p className="text-cyan-400 text-sm font-medium">
-            ✂️ Crop Mode Active
-          </p>
-          <p className="text-cyan-300/80 text-xs mt-1">
+        <div className="rounded-lg bg-neutral-200/50 p-3 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80">
+          <p className="text-sm font-medium">Crop Mode Active</p>
+          <p className="mt-1 text-xs opacity-80">
             Adjust the blue rectangle to set crop area
           </p>
         </div>
@@ -365,7 +363,7 @@ export function CropContent() {
           className="w-full"
           variant="default"
         >
-          <Crop className="h-4 w-4 mr-2" />
+          <Crop className="mr-2 h-4 w-4" />
           Start Cropping
         </Button>
       )}
@@ -373,9 +371,7 @@ export function CropContent() {
       {/* Aspect Ratio Selection - Only show in crop mode */}
       {isCropMode && (
         <div>
-          <h3 className="text-sm font-medium text-white mb-3">
-            Crop Aspect Ratios
-          </h3>
+          <h3 className="mb-3 text-sm font-medium">Crop Aspect Ratios</h3>
           <div className="grid grid-cols-3 gap-2">
             {ASPECT_RATIOS.map((ratio) => {
               const IconComponent = ratio.icon;
@@ -383,16 +379,16 @@ export function CropContent() {
                 <button
                   key={ratio.label}
                   onClick={() => applyAspectRatio(ratio.value)}
-                  className={`text-center p-3 border rounded-lg transition-colors cursor-pointer ${
+                  className={`cursor-pointer rounded-lg border p-3 text-center transition-colors ${
                     selectedRatio === ratio.value
-                      ? "border-cyan-400 bg-cyan-400/10"
-                      : "border-white/20 hover:border-white/40 hover:bg-white/5"
+                      ? "bg-neutral-200/70 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80"
+                      : "border-black/10 opacity-70 hover:border-black hover:bg-white/5 dark:border-white/20 dark:hover:border-white/40"
                   }`}
                 >
-                  <IconComponent className="h-6 w-6 mx-auto mb-2 text-white" />
-                  <div className="text-xs text-white">{ratio.label}</div>
+                  <IconComponent className="mx-auto mb-2 h-6 w-6 text-black/80 dark:text-white" />
+                  <div className="text-xs">{ratio.label}</div>
                   {ratio.ratio && (
-                    <div className="text-xs text-white/70">{ratio.ratio}</div>
+                    <div className="text-xs opacity-70">{ratio.ratio}</div>
                   )}
                 </button>
               );
@@ -403,22 +399,22 @@ export function CropContent() {
 
       {/* Crop Actions - Only show in crop mode */}
       {isCropMode && (
-        <div className="space-y-3 pt-4 border-t border-white/10">
+        <div className="space-y-3 border-t border-white/10 pt-4">
           <Button onClick={applyCrop} className="w-full" variant="default">
-            <CheckCheck className="h-4 w-4 mr-2" />
+            <CheckCheck className="mr-2 h-4 w-4" />
             Apply Crop
           </Button>
 
           <Button onClick={cancelCrop} variant="outline" className="w-full">
-            <X className="h-4 w-4 mr-2" />
+            <X className="mr-2 h-4 w-4" />
             Cancel
           </Button>
         </div>
       )}
 
       {/* Instructions */}
-      <div className="bg-slate-700/30 rounded-lg p-3">
-        <p className="text-xs text-white/70">
+      <div className="rounded-lg bg-neutral-200/50 p-3 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80">
+        <p className="text-xs opacity-70">
           <strong>How to crop:</strong>
           <br />
           1. Click "Start Cropping"

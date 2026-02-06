@@ -18,7 +18,6 @@ import { TextControls } from "./tools/text-control";
 import { AIExtenderControls } from "./tools/ai-extender-controls";
 import { AIEdit } from "./tools/ai-edit";
 
-
 const TOOL_CONFIGS: Record<string, ToolConfig> = {
   resize: {
     title: "Resize",

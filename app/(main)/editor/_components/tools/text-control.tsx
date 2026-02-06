@@ -210,17 +210,15 @@ export function TextControls() {
       {/* Text Editing Controls - Show only when text is selected */}
       {selectedText && (
         <div className="border-t border-white/10 pt-6">
-          <h3 className="mb-4 text-sm font-medium text-white">
-            Edit Selected Text
-          </h3>
+          <h3 className="mb-4 text-sm font-medium">Edit Selected Text</h3>
 
           {/* Font Family */}
           <div className="mb-4 space-y-2">
-            <label className="text-xs text-white/70">Font Family</label>
+            <label className="text-xs opacity-70">Font Family</label>
             <select
               value={fontFamily}
               onChange={(e) => applyFontFamily(e.target.value)}
-              className="bg-primary w-full rounded border border-white/20 px-3 py-2 text-sm text-white dark:bg-neutral-800"
+              className="w-full rounded border border-white/20 bg-neutral-200/50 px-3 py-2 text-sm ring-1 ring-neutral-400/60 dark:bg-neutral-800 dark:ring-neutral-600/80"
             >
               {FONT_FAMILIES.map((font) => (
                 <option key={font} value={font}>
@@ -233,8 +231,8 @@ export function TextControls() {
           {/* Font Size Slider */}
           <div className="mb-4 space-y-2">
             <div className="flex items-center justify-between">
-              <label className="text-xs text-white/70">Font Size</label>
-              <span className="text-xs text-white/70">{fontSize}px</span>
+              <label className="text-xs opacity-70">Font Size</label>
+              <span className="text-xs opacity-70">{fontSize}px</span>
             </div>
             <Slider
               value={[fontSize]}
@@ -248,7 +246,7 @@ export function TextControls() {
 
           {/* Text Alignment */}
           <div className="mb-4 space-y-2">
-            <label className="text-xs text-white/70">Text Alignment</label>
+            <label className="text-xs opacity-70">Text Alignment</label>
             <div className="grid grid-cols-4 gap-1">
               {(
                 [
@@ -285,7 +283,7 @@ export function TextControls() {
                 value={textColor}
                 onChange={(e) => applyTextColor(e.target.value)}
                 placeholder="#000000"
-                className="flex-1 border-white/20 bg-slate-700 text-sm text-white"
+                className="flex-1 bg-neutral-200/50 ring-1 ring-neutral-400/60 dark:bg-neutral-700/50 dark:ring-neutral-600/80"
               />
             </div>
           </div>
@@ -328,8 +326,8 @@ export function TextControls() {
           {/* Delete Text */}
           <Button
             onClick={deleteSelectedText}
-            variant="outline"
-            className="w-full border-red-400/20 text-red-400 hover:bg-red-400/10"
+            variant="custom"
+            className="w-full border-red-400/20  hover:opacity-80"
           >
             <Trash2 className="mr-2 h-4 w-4" />
             Delete Text

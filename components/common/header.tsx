@@ -2,29 +2,52 @@
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { ModeToggle } from "../theme-toggle";
-import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, useAuth, UserButton } from "@clerk/nextjs";
 import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import { useStoreUserEffect } from "@/hooks/use-storeuser-effect";
 import { BarLoader } from "react-spinners";
 import { Authenticated, Unauthenticated } from "convex/react";
 import { LayoutDashboard } from "lucide-react";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { useState } from "react";
 
 const Header = () => {
   const { theme } = useTheme();
   const path = usePathname();
   const { isLoading } = useStoreUserEffect();
+  const { has } = useAuth();
+
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (lastest) => {
+    if (lastest > 20) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  });
 
   if (path.startsWith("/editor")) {
     return null;
   }
   return (
     <header className="fixed top-0 z-50 w-full backdrop-blur-2xl">
-      <div className="m-auto flex w-full max-w-7xl items-center justify-between px-4 py-5 md:px-15">
+      <motion.div
+        animate={{
+          width: scrolled ? "80%" : "100%",
+          y: scrolled ? 10 : 0,
+        }}
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut",
+        }}
+        className="m-auto flex w-full max-w-7xl items-center justify-between px-4 py-5 md:px-15"
+      >
         <Link href={"/"} className="flex items-end text-2xl font-semibold">
           <h2 className="h-full [font-family:var(--font-atma)]">Repimly</h2>
         </Link>
-        <div className="hidden md:flex">
+        {/* <div className="hidden md:flex">
           <ul className="flex gap-4 text-sm">
             <li>
               <Link
@@ -42,16 +65,8 @@ const Header = () => {
                 Pricing
               </Link>
             </li>{" "}
-            <li>
-              <Link
-                href={"/contact"}
-                className="cursor-pointer transition-all duration-200 hover:text-neutral-500 dark:hover:text-neutral-400"
-              >
-                Contact
-              </Link>
-            </li>
           </ul>
-        </div>
+        </div> */}
         <div className="flex items-center gap-4">
           <Unauthenticated>
             <SignInButton>
@@ -64,12 +79,14 @@ const Header = () => {
             </SignUpButton>
           </Unauthenticated>
 
-          <Link href={"/dashboard"}>
-            <Button className="hidden sm:flex">
-              <LayoutDashboard className="h-4 w-4" />
-              <span className="hidden sm:flex">Dashboard</span>
-            </Button>
-          </Link>
+          {!has && (
+            <Link href={"/dashboard"}>
+              <Button variant={"outline"} className="hidden sm:flex">
+                <LayoutDashboard className="mr-2" size={18} />
+                Dashboard
+              </Button>
+            </Link>
+          )}
 
           <Authenticated>
             <UserButton />
@@ -87,7 +104,7 @@ const Header = () => {
             />
           </div>
         )}
-      </div>
+      </motion.div>
     </header>
   );
 };

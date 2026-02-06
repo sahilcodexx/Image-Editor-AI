@@ -36,7 +36,6 @@ const Header = () => {
       <motion.div
         animate={{
           width: scrolled ? "80%" : "100%",
-          y: scrolled ? 10 : 0,
         }}
         transition={{
           duration: 0.3,
@@ -63,6 +62,14 @@ const Header = () => {
                 className="cursor-pointer transition-all duration-200 hover:text-neutral-500 dark:hover:text-neutral-400"
               >
                 Pricing
+              </Link>
+            </li>{" "}
+            <li>
+              <Link
+                href={"/pricing"}
+                className="cursor-pointer transition-all duration-200 hover:text-neutral-500 dark:hover:text-neutral-400"
+              >
+                Contact
               </Link>
             </li>{" "}
           </ul>

@@ -32,16 +32,18 @@ const Header = () => {
     return null;
   }
   return (
-    <header className="fixed top-0 z-50 w-full backdrop-blur-2xl">
+    <header className="fixed top-0 z-50 w-full">
       <motion.div
         animate={{
-          width: scrolled ? "80%" : "100%",
+          width: scrolled ? "60%" : "100%",
         }}
         transition={{
           duration: 0.3,
           ease: "easeInOut",
         }}
-        className="m-auto flex w-full max-w-7xl items-center justify-between px-4 py-5 md:px-15"
+        className={`m-auto mt-2 flex w-full max-w-6xl items-center justify-between px-4 py-4 backdrop-blur-2xl md:px-7 ${
+          scrolled && "rounded-2xl border border-neutral-300/80 dark:border-neutral-600/40 bg-white/20 shadow-lg dark:bg-neutral-900/50"
+        }`}
       >
         <Link href={"/"} className="flex items-end text-2xl font-semibold">
           <h2 className="h-full [font-family:var(--font-atma)]">Repimly</h2>
@@ -75,15 +77,26 @@ const Header = () => {
           </ul>
         </div> */}
         <div className="flex items-center gap-4">
+          <span>
+            <ModeToggle />
+          </span>
           <Unauthenticated>
-            <SignInButton>
-              <Button variant={"outline"} className="hidden sm:flex">
-                Sign In
-              </Button>
-            </SignInButton>
-            <SignUpButton>
-              <Button>Get Started</Button>
-            </SignUpButton>
+            {scrolled ? (
+              <SignUpButton>
+                <Button>Get Started</Button>
+              </SignUpButton>
+            ) : (
+              <>
+                <SignInButton>
+                  <Button variant={"outline"} className="hidden sm:flex">
+                    Sign In
+                  </Button>
+                </SignInButton>
+                <SignUpButton>
+                  <Button>Get Started</Button>
+                </SignUpButton>
+              </>
+            )}
           </Unauthenticated>
 
           {!has && (
@@ -98,9 +111,6 @@ const Header = () => {
           <Authenticated>
             <UserButton />
           </Authenticated>
-          <span>
-            <ModeToggle />
-          </span>
         </div>
         {isLoading && (
           <div className="fixed bottom-0 left-0 z-40 flex w-full justify-center">

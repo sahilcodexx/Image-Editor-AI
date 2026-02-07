@@ -4,6 +4,8 @@ import Container from "../common/container";
 import { AnimatedShinyText } from "../ui/animated-shiny-text";
 import { ArrowRight } from "lucide-react";
 import VideoPlayer from "../ui/video-player";
+import HeroHeading from "../common/hero-heading";
+
 
 const HeroSection = () => {
   return (
@@ -20,22 +22,8 @@ const HeroSection = () => {
       </div>
 
       <div className="mx-auto mt-6 max-w-4xl px-6">
-        <h1 className="text-primary/50 mt-4 text-center [font-family:var(--font-atma)] text-3xl font-semibold tracking-tight md:text-5xl lg:text-7xl">
-          Simple Tools for <br />
-          <span className="text-primary font-bold"> Better {""}</span>
-          Images
-        </h1>
-        <p className="mx-auto mt-6 mb-8 max-w-lg [font-family:var(--font-atma)] text-base leading-6 tracking-wide text-neutral-500 md:text-2xl dark:text-neutral-400">
-          Edit images easily using AI and intuitive tools built for{" "}
-          <span className="font-medium text-black dark:text-white">speed</span>,{" "}
-          <span className="font-medium text-black dark:text-white">
-            quality
-          </span>
-          , and a{" "}
-          <span className="font-medium text-black dark:text-white">smooth</span>{" "}
-          editing experience.
-        </p>
-
+        
+        <HeroHeading />
         <div className="mb-12 flex items-center justify-center gap-6 sm:flex-row">
           <Link href={"/dashboard"}>
             <Button>Start Creating</Button>

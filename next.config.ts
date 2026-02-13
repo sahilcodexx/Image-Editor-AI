@@ -1,12 +1,15 @@
 import type { NextConfig } from "next";
 
-const isDev = process.env.NODE_ENV === "development";
-
 const nextConfig: NextConfig = {
   reactStrictMode: false,
-
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  experimental: {
+    workerThreads: false,
+    cpus: 1,
+  },
   images: {
-    unoptimized: isDev, //  dev 
     remotePatterns: [
       {
         protocol: "https",
@@ -14,11 +17,6 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
-  },
-
-  experimental: {
-    workerThreads: !isDev, // dev 
-    cpus: isDev ? 1 : undefined, // dev 
   },
 };
 

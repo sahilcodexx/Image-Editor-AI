@@ -24,6 +24,8 @@ export interface Project {
   originalImageUrl?: string;
   currentImageUrl?: string;
   thumbnailUrl?: string;
+  activeTransformation?: string;
+  backgroundRemove?: boolean;
   createdAt: number;
   updatedAt: number;
 }
@@ -98,4 +100,3 @@ export type ToolId =
   | "background"
   | "ai_extender"
   | "ai_edit";
-

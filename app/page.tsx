@@ -9,7 +9,7 @@ const page = () => {
   return (
     <Container className="relative overflow-hidden">
       <div className="bg-primary/15 dark:bg-primary/10 absolute top-0 right-1/16 bottom-60 h-60 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]"></div>
-      <div className="py-20 md:py-40 md:pt-40`">
+      <div className="md:pt-40` py-20 md:py-40">
         <HeroSection />
         <Stats />
         <FeaturesSection />

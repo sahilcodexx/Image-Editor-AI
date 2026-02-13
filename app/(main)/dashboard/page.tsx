@@ -21,8 +21,6 @@ const Dashboard = () => {
   };
   console.log(projects);
 
-  
-
   return (
     <Container className="flex h-screen w-full flex-col items-center justify-start gap-5 pt-25">
       <div className="flex w-full items-end justify-between">
@@ -44,7 +42,9 @@ const Dashboard = () => {
           <span className="animate-spin">
             <Loader2 height={50} width={40} />
           </span>
-        ) : projects && projects.length > 0 ? <ProjectGrid projects={projects} /> : (
+        ) : projects && projects.length > 0 ? (
+          <ProjectGrid projects={projects} />
+        ) : (
           <>
             <SvgImage />
             <h2 className="text-3xl font-medium md:text-4xl">

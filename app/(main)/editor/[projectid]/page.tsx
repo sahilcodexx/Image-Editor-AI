@@ -30,7 +30,11 @@ const Editor = () => {
     data: project,
     isLoading,
     error,
-  } = useConvexQuery(api.project.getProject, { projectId: projectid });
+  } = useConvexQuery(api.project.getProject, { projectId: projectid }) as {
+    data: Project | null;
+    isLoading: boolean;
+    error: Error | null;
+  };
 
   const { mutate: updateProject, isLoading: isSaving } = useConvexMutation(
     api.project.updateProject,
@@ -92,15 +96,13 @@ const Editor = () => {
     return () => clearTimeout(saveTimeout);
   }, [history, historyIndex, project, updateProject]);
 
-
   const reset = async () => {
     if (canvasEditor && project?.originalImageUrl) {
       // Clear canvas and load original image
       canvasEditor.clear();
-      const img = await FabricImage.fromURL(
-        project.originalImageUrl,
-        { crossOrigin: "anonymous" },
-      );
+      const img = await FabricImage.fromURL(project.originalImageUrl, {
+        crossOrigin: "anonymous",
+      });
 
       if (!canvasEditor) return;
       const imageAspectRatio = img.width! / img.height!;
@@ -131,7 +133,6 @@ const Editor = () => {
       saveState(); // Save the reset state as a new history point
     }
   };
-
 
   // Ensure project has all required properties
   const projectWithId = project
@@ -193,7 +194,7 @@ const Editor = () => {
           </p>
         </div>
       </div>
-      <div className="hidden min-h-screen dark:bg-neutral-900 lg:block">
+      <div className="hidden min-h-screen lg:block dark:bg-neutral-900">
         <div>
           {processingMessage && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs">

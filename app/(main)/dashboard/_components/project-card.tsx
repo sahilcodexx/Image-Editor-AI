@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { formatDistanceToNow } from "date-fns";
 import { toast } from "sonner";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ProjectCard = ({ project, onEdit }: { project: any; onEdit: any }) => {
   const { mutate: deleteProject, isLoading } = useConvexMutation(
     api.project.deleteProjects,

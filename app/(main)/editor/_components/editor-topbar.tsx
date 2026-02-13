@@ -7,7 +7,7 @@ import { api } from "@/convex/_generated/api";
 
 import { useConvexMutation, useConvexQuery } from "@/hooks/use-convex-query";
 import { usePlanAccess } from "@/hooks/use-plan-access";
-import { Project, ToolId } from "@/utils/types";
+import { Project, ToolId, User } from "@/utils/types";
 import {
   Crop,
   Expand,
@@ -119,7 +119,7 @@ const EditorTopbar = ({ project }: { project: Project }) => {
   const [restrictedTool, setRestrictedTool] = useState<string | null>(null);
 
   const [isExporting, setIsExporting] = useState(false);
-  const [exportFormat, setExportFormat] = useState(null);
+  const [exportFormat, setExportFormat] = useState<string | null>(null);
   const [viewportTransform, setViewportTransform] = useState();
 
   const {
@@ -139,7 +139,9 @@ const EditorTopbar = ({ project }: { project: Project }) => {
   const { mutate: updateProject, isLoading: isUpdatingProject } =
     useConvexMutation(api.project.updateProject);
 
-  const { data: user } = useConvexQuery(api.users.getCurrentUser);
+  const { data: user } = useConvexQuery(api.users.getCurrentUser) as {
+    data: User | null;
+  };
 
   const handleManualSave = async () => {
     if (!canvasEditor) {
@@ -170,7 +172,12 @@ const EditorTopbar = ({ project }: { project: Project }) => {
     onToolChange(toolId);
   };
 
-  const handleExport = async (exportConfig) => {
+  const handleExport = async (exportConfig: {
+    format: string;
+    quality: number;
+    label: string;
+    extension: string;
+  }) => {
     try {
       if (!canExport || !project) {
         toast.error(
@@ -178,7 +185,7 @@ const EditorTopbar = ({ project }: { project: Project }) => {
         );
         return;
       }
-      if (!canExport(user?.exportsThisMonth || 0)) {
+      if (!canExport(user?.exportProjectThisMonth || 0)) {
         setRestrictedTool("export");
         setShowUpgradeModal(true);
         return;
@@ -322,9 +329,9 @@ const EditorTopbar = ({ project }: { project: Project }) => {
                   ))}
                   <DropdownMenuSeparator />
                   <div className="px-2 py-1 text-sm text-wrap">
-                    Free Plan: {user?.exportsThisMonth || 0}/20 exports this
-                    month
-                    {(user?.exportsThisMonth || 0) >= 20 && (
+                    Free Plan: {user?.exportProjectThisMonth || 0}/20 exports
+                    this month
+                    {(user?.exportProjectThisMonth || 0) >= 20 && (
                       <div className="mt-1 text-sm text-red-600">
                         You have reached your export limit. Upgrade to Pro for
                         more exports.

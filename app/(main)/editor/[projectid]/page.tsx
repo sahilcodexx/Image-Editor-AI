@@ -71,10 +71,11 @@ const Editor = () => {
   };
 
   useEffect(() => {
+    if (!project) return;
     let saveTimeout: NodeJS.Timeout;
 
     const autoSave = () => {
-      if (history.length > 0 && project) {
+      if (history.length > 0) {
         clearTimeout(saveTimeout);
         saveTimeout = setTimeout(() => {
           const currentCanvasState = history[historyIndex];

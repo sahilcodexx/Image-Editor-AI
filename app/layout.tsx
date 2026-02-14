@@ -21,8 +21,8 @@ const atma = Atma({
 });
 
 export const metadata: Metadata = {
-  title: "Pixel",
-  description: "Ai image editor",
+  title: "Repimly",
+  description: "A modern image editor powered by AI.",
 };
 
 export default function RootLayout({

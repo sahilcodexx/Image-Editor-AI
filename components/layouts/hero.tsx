@@ -6,11 +6,10 @@ import { ArrowRight } from "lucide-react";
 import VideoPlayer from "../ui/video-player";
 import HeroHeading from "../common/hero-heading";
 
-
 const HeroSection = () => {
   return (
-    <Container className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden pb-20 text-center">
-      <div className="bg-primary absolute bottom-94 h-50 w-50 scale-135 opacity-40 blur-3xl"></div>
+    <Container className="relative flex min-h-screen flex-col items-center justify-center  pb-20 text-center">
+      <div className="bg-primary absolute bottom-70 md:bottom-94 h-32 w-32 md:h-50 md:w-50 scale-135 opacity-40 blur-3xl"></div>
       <div className="flex w-full items-center justify-center">
         <div className="flex items-center gap-2 rounded-2xl border-2 px-4 py-1 text-xs">
           <AnimatedShinyText>Edit images easily with AI</AnimatedShinyText>
@@ -22,7 +21,6 @@ const HeroSection = () => {
       </div>
 
       <div className="mx-auto mt-6 max-w-4xl px-6">
-        
         <HeroHeading />
         <div className="mb-12 flex items-center justify-center gap-6 sm:flex-row">
           <Link href={"/dashboard"}>

@@ -34,7 +34,7 @@ const Header = () => {
       if (window.innerWidth <= 768) {
         setWidth(scrolled ? "80%" : "100%");
       } else {
-        setWidth(scrolled ? "60%" : "100%");
+        setWidth(scrolled ? "50%" : "100%");
       }
     };
 
@@ -62,7 +62,7 @@ const Header = () => {
           "rounded-2xl border border-neutral-300/80 bg-white/20 shadow-lg dark:border-neutral-600/40 dark:bg-neutral-900/50"
         }`}
       >
-        <Link href={"/"} className="flex items-end text-2xl font-semibold">
+        <Link href={"/"} className="flex items-end text-xl md:text-2xl font-semibold">
           <h2 className="h-full [font-family:var(--font-atma)]">Repimly</h2>
         </Link>
         {/* <div className="hidden md:flex">

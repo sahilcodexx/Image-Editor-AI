@@ -14,14 +14,14 @@ const Footer = () => {
 
   return (
     <div className="pt-20">
-      <div className="h-[0.85px] dark:bg-neutral-800 bg-neutral-300/70"></div>
+      <div className="h-[0.85px] bg-neutral-300/70 dark:bg-neutral-800"></div>
       <Container className="pt-20 pb-0">
-        <div className="flex items-end justify-between pb-10 ">
+        <div className="flex items-end justify-between pb-10">
           <div className="flex flex-col gap-0.5">
-            <h2 className="[font-family:var(--font-atma)] text-3xl font-semibold">
+            <h2 className="[font-family:var(--font-atma)] text-xl font-semibold md:text-3xl">
               Repimly
             </h2>
-            <p className="text-xs opacity-70">
+            <p className="text-xs text-wrap opacity-70">
               © 2026 Repimly Inc. All rights reserved.
             </p>
           </div>
@@ -46,17 +46,19 @@ const Footer = () => {
                 </Button>
               </Link>
             </div>
-            <p className="text-sm dark:text-white/60 text-black/60">
+            <p className="text-sm text-black/60 dark:text-white/60">
               Made by
-              <Link href="" className="dark:text-white  text-black">
+              <Link href="" className="text-black dark:text-white">
                 {" "}
                 Sahilcodex
               </Link>
             </p>
           </div>
         </div>
-        <div className="flex items-center justify-center bg-linear-to-b dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-600 bg-clip-text text-[160px] font-bold text-transparent from-neutral-100 via-neutral-200 to-neutral-300 ">
-          Repimly
+        <div className="flex items-center justify-center">
+          <h2 className="bg-linear-to-b from-neutral-100 via-neutral-200 to-neutral-300 bg-clip-text text-8xl font-bold text-transparent md:text-[160px] dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-600">
+            Repimly
+          </h2>
         </div>
       </Container>
     </div>

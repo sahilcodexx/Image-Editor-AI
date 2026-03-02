@@ -10,7 +10,7 @@ import { BarLoader } from "react-spinners";
 import { Authenticated, Unauthenticated } from "convex/react";
 import { LayoutDashboard } from "lucide-react";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const { theme } = useTheme();
@@ -27,16 +27,29 @@ const Header = () => {
       setScrolled(false);
     }
   });
+  const [width, setWidth] = useState("100%");
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setWidth(scrolled ? "80%" : "100%");
+      } else {
+        setWidth(scrolled ? "60%" : "100%");
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [scrolled]);
   if (path.startsWith("/editor")) {
     return null;
   }
+
   return (
     <header className="fixed top-0 z-50 w-full overflow-x-hidden">
       <motion.div
-        animate={{
-          width: scrolled ? "60%" : "100%",
-        }}
+        animate={{ width }}
         layout
         transition={{
           layout: {
@@ -44,7 +57,7 @@ const Header = () => {
             ease: [0.22, 1, 0.36, 1],
           },
         }}
-        className={`mx-auto mt-2 flex w-full max-w-sm md:max-w-6xl items-center justify-between px-4 py-4 backdrop-blur-2xl md:px-7 ${
+        className={`mx-auto mt-2 flex w-full max-w-sm items-center justify-between px-4 py-4 backdrop-blur-2xl md:max-w-5xl md:px-7 ${
           scrolled &&
           "rounded-2xl border border-neutral-300/80 bg-white/20 shadow-lg dark:border-neutral-600/40 dark:bg-neutral-900/50"
         }`}
@@ -96,7 +109,7 @@ const Header = () => {
           <Unauthenticated>
             {scrolled ? (
               <SignUpButton>
-                <Button>Get Started</Button>
+                <Button>Join Now</Button>
               </SignUpButton>
             ) : (
               <>

@@ -32,7 +32,7 @@ const Header = () => {
     return null;
   }
   return (
-    <header className="fixed top-0 z-50 w-full">
+    <header className="fixed top-0 z-50 w-full overflow-x-hidden">
       <motion.div
         animate={{
           width: scrolled ? "60%" : "100%",
@@ -44,7 +44,7 @@ const Header = () => {
             ease: [0.22, 1, 0.36, 1],
           },
         }}
-        className={`m-auto mt-2 flex w-full max-w-6xl items-center justify-between px-4 py-4 backdrop-blur-2xl md:px-7 ${
+        className={`mx-auto mt-2 flex w-full max-w-sm md:max-w-6xl items-center justify-between px-4 py-4 backdrop-blur-2xl md:px-7 ${
           scrolled &&
           "rounded-2xl border border-neutral-300/80 bg-white/20 shadow-lg dark:border-neutral-600/40 dark:bg-neutral-900/50"
         }`}

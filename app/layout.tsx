@@ -63,9 +63,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
       <ReactLenis root>
-        <body className={`${inter.className} ${atma.variable} antialiased`}>
+        <body className={`${inter.className} ${atma.variable} antialiased overflow-x-hidden`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

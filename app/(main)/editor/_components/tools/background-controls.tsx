@@ -327,7 +327,7 @@ export function BackgroundControls({ project }: { project: Project }) {
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyPress={handleSearchKeyPress}
               placeholder="Search for backgrounds..."
-              className="flex-1 border-white/20 bg-neutral-300/50 text-white ring-1 inset-shadow-xs ring-black/20 inset-shadow-neutral-400/70 dark:bg-neutral-700/50 dark:ring-neutral-600/80"
+              className="flex-1 border-white/20 bg-neutral-300/50  ring-1 inset-shadow-xs ring-black/20 inset-shadow-neutral-400/70 dark:bg-neutral-700/50 dark:ring-neutral-600/80"
             />
             <Button
               onClick={searchUnsplashImages}

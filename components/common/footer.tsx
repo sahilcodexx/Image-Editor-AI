@@ -46,7 +46,7 @@ const Footer = () => {
                 </Button>
               </Link>
             </div>
-            <p className="text-sm text-black/60 dark:text-white/60">
+            <p className="text-sm text-end mr-3` md:mr-0 text-black/60 dark:text-white/60">
               Made by
               <Link href="" className="text-black dark:text-white">
                 {" "}
